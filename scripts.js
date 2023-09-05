@@ -53,6 +53,8 @@ function displayPhotos(json){
     // we'll use everything but the ids to make sure we display our photos properly
     // it's handy when APIs that return photos also include their width and height!
 
+
+
     const outputDiv = document.getElementById("cats");
 
     let output = "";
@@ -60,7 +62,7 @@ function displayPhotos(json){
     for(let photo of json){
         // TO DO
         output += `
-            <img src="${"add image url here"} alt="" width="${"add image width here"}" height="${"add image height here"}">
+            <img src="${photo.url}" alt="" width="${photo.width}" height="${photo.height}">
         `;
 
     }
@@ -71,13 +73,38 @@ function displayPhotos(json){
 // the function that will display the data from our JSON file of users to the console
 function getUsers(data){
     console.log('This is our user data from the file: ', data);
+
+
+
+
+
+
+    const outputDiv = document.getElementById("users");
+
+    let output = "";
+
+    for(let user of data.results){
+        // TO DO
+        output += `
+        <section>
+        <h3>${user.name.first} ${user.name.last}</h3>
+        <p> Username:"${user.login.username}</p>
+            <img src="${user.picture.large}" alt="" width="160" height="160">
+            </section>
+            <a href = "mailto:${user.email}"> ${user.email}"</a>
+        `;
+
+    }
+
+    outputDiv.innerHTML = output;
+
 }
 
 // call the function to display the cat photos on page load
 // the window.onload handler is where we can attach event handlers 
 // that won't be added to the page until the content has loaded
 window.onload = function(){
-    getPhotos();
+    // getPhotos();
 
     // get the data stored in our local JSON file so we can use it 
     // to display portions of the data returned
